@@ -1,9 +1,7 @@
 import React from "react"
 import ImageGalleryItem from '../ImageGalleryItem'
 import PropTypes from "prop-types"
-//import { Test } from './ImageGallery.styles';
 
-//inside li with images
 const ImageGallery = ({hits, onImageClick}) => {
   return (
     (
@@ -12,7 +10,11 @@ const ImageGallery = ({hits, onImageClick}) => {
           <ImageGalleryItem key={item.id} 
           onClick = {onImageClick}
           cardImage = {item.webformatURL}
-          alt = {item.tags}/>
+          alt = {item.tags}
+          srcOriginal={item.largeImageURL}
+          getLargeImageURL={onImageClick}
+          />
+          
         ))}
       </ul>
     )
@@ -21,11 +23,9 @@ const ImageGallery = ({hits, onImageClick}) => {
 }
 
 ImageGallery.propTypes = {
-  // bla: PropTypes.string,
+hits: PropTypes.array.isRequired,
+onImageClick: PropTypes.func.isRequired
 }
 
-ImageGallery.defaultProps = {
-  // bla: 'test',
-}
 
 export default ImageGallery

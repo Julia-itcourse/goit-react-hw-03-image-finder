@@ -1,13 +1,28 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-//import { Test } from './Searchbar.styles';
 
 
-//onSubmit - функцию для передачи значения инпута при сабмите формы
-const Searchbar =({onSubmit})=>{
+
+class Searchbar extends Component {
+
+  state = {
+    query: '',
+  }
+
+  handleSubmit = (event) =>{
+    event.preventDefault();
+    this.props.onSubmit(this.state.query);
+    this.setState({query:''});
+  };
+
+  handleChange = ({target: {value, name}}) => {
+    this.setState({[name]: value});
+  };
+
+render(){
 return(
 <header className="Searchbar">
-  <form className="SearchForm">
+  <form className="SearchForm" onSubmit = {this.handleSubmit}>
     <button type="submit" className="SearchForm-button">
       <span className="SearchForm-button-label">Search</span>
     </button>
@@ -17,12 +32,15 @@ return(
       type="text"
       autoComplete="off"
       autoFocus
-      placeholder="Search images and photos"
+      placeholder="Search images"
+      name="query"
+      value={this.state.query}
+      onChange={this.handleChange}
     />
   </form>
 </header>
 )
-  
+}
 }
 
 

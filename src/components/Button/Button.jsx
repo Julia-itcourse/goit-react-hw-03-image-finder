@@ -5,15 +5,17 @@ import PropTypes from 'prop-types';
 
 const Button = ({onClick}) =>{
 
- return( <button className={styles.button} type="button" onClick={}>Load more</button>)
+ return( 
+
+ <button className="Button" type="button" onClick={
+  onClick}>Load more</button>
+ 
+  )
 }
 
 Button.propTypes = {
-  // bla: PropTypes.string,
+  onClick: PropTypes.func.isRequired
 };
 
-Button.defaultProps = {
-  // bla: 'test',
-};
 
 export default Button;
